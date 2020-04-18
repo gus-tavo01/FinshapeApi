@@ -2,8 +2,10 @@ import * as Express from 'express';
 import { ServerLoader, ServerSettings } from '@tsed/common';
 import Path = require('path');
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import { dbKeys } from './config/dbKeys';
 
-const port = process.env.port || 3200;
+const port = process.env.PORT || 3200;
 
 @ServerSettings({
   rootDir: Path.resolve(__dirname),
@@ -14,17 +16,24 @@ const port = process.env.port || 3200;
   },
 })
 export class Server extends ServerLoader {
-  public $beforeRoutesInit(): void | Promise<any> {
+  public async $beforeRoutesInit(): Promise<any | void> {
     // Configure the middlewares required by your application to work
     this.use(bodyParser.urlencoded({ extended: true }));
+
+    // setup mongodb
+    try {
+      await mongoose.connect(dbKeys.uri, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      });
+      console.log('Mongodb connected successfully');
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  public $onReady() {
+  public async $onReady(): Promise<void> {
     console.log(`Server running at port... ${port}`);
-  }
-
-  public $onServerInitError(err: any): void {
-    console.error(err);
   }
 }
 
