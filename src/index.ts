@@ -19,6 +19,7 @@ export class Server extends ServerLoader {
   public async $beforeRoutesInit(): Promise<any | void> {
     // Configure the middlewares required by your application to work
     this.use(bodyParser.urlencoded({ extended: true }));
+    this.use(bodyParser.json());
 
     // setup mongodb
     try {
