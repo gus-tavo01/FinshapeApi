@@ -7,7 +7,7 @@ import { PointSchema } from './point';
 import { PositionSchema } from './position';
 import { Models } from './enums/Models';
 
-interface ISubject extends Document, Subject {}
+interface SubjectDocument extends Document, Subject {}
 
 const SubjectSchema = new Schema({
   hashKey: { type: String, required: true, unique: true },
@@ -28,7 +28,7 @@ const SubjectSchema = new Schema({
   },
 });
 
-export const SubjectModel = model<ISubject>(
+export const SubjectModel = model<SubjectDocument>(
   Models.subject,
   SubjectSchema,
   Collections.subjects
