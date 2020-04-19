@@ -1,7 +1,7 @@
 {
-  "name": "finshapeapi",
+  "name": "framework-template",
   "version": "1.0.0",
-  "description": "Isolated finshape api",
+  "description": "web framework template for restful apis",
   "main": "index.js",
   "scripts": {
     "start:build": "tsc -w",
@@ -10,14 +10,12 @@
     "seeder": "node build/helpers/dataSeeder.js"
   },
   "keywords": [
-    "finshape"
+    "framework, template"
   ],
-  "author": "Gustavo, Rodrigo, Daniel",
+  "author": "Gustavo",
   "license": "ISC",
   "dependencies": {
-    "@types/body-parser": "^1.19.0",
-    "@types/express": "^4.17.6",
-    "@types/mongoose": "^5.7.12",
+    "automapper-ts": "^1.9.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "fluent-ts-validator": "^3.0.2",
@@ -28,6 +26,9 @@
   "devDependencies": {
     "typescript": "^3.8.3",
     "concurrently": "^5.1.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.6",
+    "@types/mongoose": "^5.7.12"
   }
 }
