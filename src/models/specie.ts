@@ -1,5 +1,7 @@
 import { Document, Schema, model } from 'mongoose';
 import { Specie } from '../types/Specie';
+import { Collections } from './enums/collections';
+import { Models } from './enums/Models';
 
 interface SpecieModel extends Document, Specie {}
 
@@ -8,7 +10,7 @@ const SpecieSchema = new Schema({
 });
 
 export const SpecieModel = model<SpecieModel>(
-  'Specie',
+  Models.specie,
   SpecieSchema,
-  'species'
+  Collections.species
 );
