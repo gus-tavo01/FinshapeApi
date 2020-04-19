@@ -1,8 +1,7 @@
-import { SubjectModel } from '../models/subject';
+import { SubjectModel } from '../models/mongo/subjectModel';
 import { Service, Scope, ProviderScope } from '@tsed/common';
-import { Model, Document } from 'mongoose';
-import { Subject } from '../types/Subject';
-import { Collections } from '../models/enums/collections';
+import { Subject } from '../models/Subject';
+import { Collections } from '../models/mongo/enums/collections';
 
 @Service()
 @Scope(ProviderScope.INSTANCE)
