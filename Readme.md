@@ -1,19 +1,24 @@
-# Finshape api v2
+# Framework template
 
 ## Getting started
 
-### scripts
+- Clone the repo from: `repo github url`
+- Go to project folder and install it `npm install`
+- Optional seed some dummy data `npm run seeder`
+- Run the project `npm start`
 
-- npm run seeder
-  - will add if does not exist dummy data for species and subjects collections
-- npm start
-  - will start running the server and watch for file changes to reset the server instance
-- npm install
-  - will install all the required dependencies to run this project
+## Dependencies oficial documentation
+
+- Automapper ts: `https://github.com/loedeman/AutoMapper/wiki`
+- Express decorators: `https://tsed.io/getting-started.html`
+- Fluent validator: `https://github.com/markusbohl/fluent-ts-validator`
 
 ## Pendings
 
-- standarize an http response
-- construct http response
 - add validator
+- standarize an http response
+
+  - construct http response
+
 - create a generic repo on data layer
+- segregate models on to dtos, domain, db
