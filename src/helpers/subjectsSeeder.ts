@@ -1,5 +1,5 @@
-import { SubjectModel } from '../models/subject';
-import { Subject } from '../types/Subject';
+import { SubjectModel } from '../models/mongo/subjectModel';
+import { Subject } from '../models/Subject';
 
 export const subjectsSeeder = async (speciesCollection: string[]) => {
   function getAnySpecieId(): string {

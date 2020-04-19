@@ -1,5 +1,5 @@
-import { SpecieModel } from '../models/specie';
-import { Specie } from '../types/Specie';
+import { SpecieModel } from '../models/mongo/specieModel';
+import { Specie } from '../models/Specie';
 
 export const speciesSeeder = async (): Promise<string[]> => {
   const species: Specie[] = [
