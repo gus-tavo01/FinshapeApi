@@ -1,7 +1,12 @@
 import { SubjectModel } from '../models/subject';
 import { Subject } from '../types/Subject';
 
-export const subjectsSeeder = async () => {
+export const subjectsSeeder = async (speciesCollection: string[]) => {
+  function getAnySpecieId(): string {
+    const index = Math.floor(Math.random() * speciesCollection.length);
+    return speciesCollection[index];
+  }
+
   const subjects: Subject[] = [
     {
       hashKey: 'uniqueHashKey',
@@ -15,6 +20,7 @@ export const subjectsSeeder = async () => {
       flip: 10,
       area: 10,
       tags: 'tag, tag2',
+      specieId: '',
     },
     {
       hashKey: 'anotherHashKey',
@@ -28,6 +34,7 @@ export const subjectsSeeder = async () => {
       flip: 10,
       area: 10,
       tags: 'tag, tag1, tag2',
+      specieId: '',
     },
   ];
 
@@ -42,6 +49,7 @@ export const subjectsSeeder = async () => {
       });
 
       if (!subjectExist) {
+        subject.specieId = getAnySpecieId();
         insertValues.push(subject);
       }
     }
