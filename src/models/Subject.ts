@@ -24,7 +24,7 @@ const SubjectSchema = new Schema({
   specieId: {
     type: Schema.Types.ObjectId,
     ref: Models.specie,
-    required: false,
+    required: true,
   },
 });
 
