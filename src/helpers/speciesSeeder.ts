@@ -1,7 +1,7 @@
 import { SpecieModel } from '../models/specie';
 import { Specie } from '../types/Specie';
 
-export const speciesSeeder = async () => {
+export const speciesSeeder = async (): Promise<string[]> => {
   const species: Specie[] = [
     { name: 'Eubalaena glacialis (Müller, 1776). North Atlantic right whale' },
     { name: 'japonica (Lacépède, 1818). North Pacific right whale' },
@@ -21,10 +21,12 @@ export const speciesSeeder = async () => {
         insertValues.push(specie);
       }
     }
-
     await SpecieModel.insertMany(insertValues);
   } catch (err) {
-    console.log('error during seeding species');
-    console.error(err);
+    throw new Error('error during seeding species');
   }
+
+  // just return the first 10 species
+  const firstTenSpecies = await SpecieModel.find().limit(10);
+  return firstTenSpecies.map((specie) => specie.id);
 };
