@@ -9,11 +9,11 @@ mongoose
     useUnifiedTopology: true,
     useNewUrlParser: true,
   })
-  .then(() => {
+  .then(async () => {
     console.log('Connecting to mongodb...');
 
-    speciesSeeder();
-    subjectsSeeder();
+    const species = await speciesSeeder();
+    subjectsSeeder(species);
   })
   .catch((err) => {
     console.log('Error while connecting to mongodb');
