@@ -1,7 +1,6 @@
-import { Schema } from 'mongoose';
-import { PositionSchema } from './position';
+import { Position } from './Position';
 
-export const PointSchema = new Schema({
-  position: PositionSchema,
-  name: { type: String },
-});
+export interface Point {
+  name: string;
+  position: Position;
+}
