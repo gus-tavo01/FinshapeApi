@@ -15,5 +15,7 @@
 
 ## Pendings
 
+- add and implement the mapper instance
 - add custom dummy, dummyChild validator
+- add rest of methods on repo (find, findRange, remove, removeRange, update, addRange)
 - create a generic repo on data layer
