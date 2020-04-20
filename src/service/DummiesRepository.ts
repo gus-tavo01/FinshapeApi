@@ -3,11 +3,20 @@ import { Dummy } from '../models/Dummy';
 import { DummyDbModel } from '../models/mongo/models/dummyDbModel';
 import { IRepository } from './contracts/IRepository';
 
+import { MongooseFilterQuery } from 'mongoose';
+
 @Service()
 @Scope(ProviderScope.INSTANCE)
 export class DummiesRepository implements IRepository<Dummy> {
-  public async find(conditions: () => boolean): Promise<Dummy | null> {
-    throw new Error('Not implemented yet');
+  public async find(
+    conditions: () => MongooseFilterQuery<Dummy>
+  ): Promise<Dummy | null> {
+    try {
+      const dummy = await DummyDbModel.findOne(conditions());
+      return dummy;
+    } catch (err) {
+      return null;
+    }
   }
 
   public async add(entity: Dummy): Promise<Dummy | null> {
