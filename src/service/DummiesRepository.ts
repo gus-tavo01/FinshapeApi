@@ -28,4 +28,28 @@ export class DummiesRepository implements IRepository<Dummy> {
       return null;
     }
   }
+
+  public async remove(id: string): Promise<boolean> {
+    try {
+      const result = await DummyDbModel.findByIdAndDelete(id);
+      if (result) {
+        return true;
+      }
+      return false;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  public async update(id: string, newEntity: Dummy): Promise<boolean> {
+    try {
+      const result = await DummyDbModel.findByIdAndUpdate(id, newEntity);
+      if (result) {
+        return true;
+      }
+      return false;
+    } catch (err) {
+      return false;
+    }
+  }
 }
