@@ -1,19 +1,16 @@
 import { Service, Scope, ProviderScope } from '@tsed/common';
 import { Dummy } from '../models/Dummy';
 import { DummyDbModel } from '../models/mongo/models/dummyDbModel';
-
-interface GenericRepo<T> {
-  create(entity: T): Promise<T | null>;
-}
+import { IRepository } from './contracts/IRepository';
 
 @Service()
 @Scope(ProviderScope.INSTANCE)
-export class DummiesRepository implements GenericRepo<Dummy> {
+export class DummiesRepository implements IRepository<Dummy> {
   public async find(conditions: () => boolean): Promise<Dummy | null> {
     throw new Error('Not implemented yet');
   }
 
-  public async create(entity: Dummy): Promise<Dummy | null> {
+  public async add(entity: Dummy): Promise<Dummy | null> {
     try {
       const model = new DummyDbModel(entity);
       const result = await model.save();
