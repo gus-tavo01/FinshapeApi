@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { dbKeys } from '../config/dbKeys';
-import { speciesSeeder } from './speciesSeeder';
-import { subjectsSeeder } from './subjectsSeeder';
+// import { speciesSeeder } from './dummyChildsSeeder';
+import { subjectsSeeder } from './dummiesSeeder';
 
 // set up mongoose and turn on the connection
 mongoose
@@ -12,8 +12,8 @@ mongoose
   .then(async () => {
     console.log('Connecting to mongodb...');
 
-    const species = await speciesSeeder();
-    subjectsSeeder(species);
+    //const dummyChildren = await speciesSeeder();
+    subjectsSeeder();
   })
   .catch((err) => {
     console.log('Error while connecting to mongodb');
