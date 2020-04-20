@@ -4,7 +4,7 @@ import { MongoCollections } from '../enums/mongoCollections';
 import { MongoModels } from '../enums/mongoModels';
 import { DummyChild } from '../../DummyChild';
 
-interface DummyChildDocument extends Document, DummyChild {}
+export interface DummyChildDocument extends Document, DummyChild {}
 
 export const DummyChildDbModel = model<DummyChildDocument>(
   MongoModels.dummyChild,
