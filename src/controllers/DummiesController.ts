@@ -4,7 +4,7 @@ import { Controller, Get, Post, Put, Delete } from '@tsed/common';
 import { Response } from 'express';
 import { HttpResponse } from '../helpers/httpResponse';
 import { HttpRequest } from '../helpers/httpRequest';
-import { DummyDto } from '../dtos/DummyDTO';
+import { DummyDTO } from '../dtos/DummyDTO';
 import { Dummy } from '../models/Dummy';
 
 // dependencies
@@ -40,15 +40,15 @@ export class DummiesController {
       return res.status(response.status).json(response);
     }
 
-    // response.result = mapper.map<DummyDto>(dummyFound);
+    // response.result = mapper.map<DummyDTO>(dummyFound);
     response.result = dummyFound;
     response.ok();
     return res.status(response.status).json(response);
   }
   @Post('/')
-  public async createDummy(req: HttpRequest<DummyDto>, res: Response) {
-    const response = new HttpResponse<DummyDto>();
-    const dummyDto: DummyDto = req.body;
+  public async createDummy(req: HttpRequest<DummyDTO>, res: Response) {
+    const response = new HttpResponse<DummyDTO>();
+    const dummyDto: DummyDTO = req.body;
 
     if (!req.body) {
       response.badRequest('Please provide a json body on your request');

@@ -1,7 +1,7 @@
 import { AbstractValidator } from 'fluent-ts-validator';
-import { DummyDto } from '../dtos/DummyDTO';
+import { DummyDTO } from '../dtos/DummyDTO';
 
-export class DummyValidator extends AbstractValidator<DummyDto> {
+export class DummyValidator extends AbstractValidator<DummyDTO> {
   constructor() {
     super();
 

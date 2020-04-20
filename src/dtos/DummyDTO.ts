@@ -1,9 +1,9 @@
-import { DummyChildDto } from './DummyChildDto';
+import { DummyChildDTO } from './DummyChildDTO';
 
-export class DummyDto {
+export class DummyDTO {
   name: string = '';
   date: string = new Date().toJSON();
-  child?: DummyChildDto;
-  children: DummyChildDto[] = [];
+  child?: DummyChildDTO;
+  children: DummyChildDTO[] = [];
   relatedDummy?: string;
 }

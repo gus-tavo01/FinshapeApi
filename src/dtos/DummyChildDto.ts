@@ -1,4 +1,4 @@
-export class DummyChildDto {
+export class DummyChildDTO {
   name: string = '';
   superPower: string = '';
   favoriteColors: string[] = [];
