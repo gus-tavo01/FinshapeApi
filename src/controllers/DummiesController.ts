@@ -2,8 +2,8 @@ import { Controller, Get, Post, Put, Delete } from '@tsed/common';
 
 // models
 import { Response } from 'express';
-import { HttpResponse } from '../helpers/models/httpResponse';
-import { HttpRequest } from '../helpers/models/httpRequest';
+import { HttpResponse } from '../helpers/httpResponse';
+import { HttpRequest } from '../helpers/httpRequest';
 import { DummyDto } from '../dtos/DummyDTO';
 import { Dummy } from '../models/Dummy';
 
@@ -31,19 +31,21 @@ export class DummiesController {
       return res.status(response.status).json(response);
     }
 
-    // const dummyFound = await this.dummiesRepo.find(
-    //   (dummy: Dummy) => dummy.id === id
-    // );
+    const dummyFound = await this.dummiesRepo.find(() => {
+      return { _id: id };
+    });
 
-    // if (dummyFound === null) {
-    //   response.notFound(`Dummy with id ${id} was not found`);
-    // }
+    if (dummyFound === null) {
+      response.notFound(`Dummy with id '${id}' was not found`);
+      return res.status(response.status).json(response);
+    }
 
     // response.result = mapper.map<DummyDto>(dummyFound);
+    response.result = dummyFound;
     response.ok();
     return res.status(response.status).json(response);
   }
-  @Post('/dummy')
+  @Post('/')
   public async createDummy(req: HttpRequest<DummyDto>, res: Response) {
     const response = new HttpResponse<DummyDto>();
     const dummyDto: DummyDto = req.body;
@@ -65,21 +67,32 @@ export class DummiesController {
       return res.status(response.status).json(response);
     }
 
+    // TODO
     // if validations passed, store the entity on DB
     // const dummyDocument = mapper.map<Dummy>(dummyDto);
-    // const resultDummy = await this.dummiesRepo.create(dummyDocument);
 
-    // if (resultDummy === null) {
-    //   response.unprocessableEntity();
-    //   return res.status(response.status).json(response);
-    // }
+    // Temporal
+    // fast and furious mapping
+    const dummyDocument: Dummy = {
+      name: dummyDto.name,
+      date: dummyDto.date,
+      children: dummyDto.children,
+    };
+    const resultDummy = await this.dummiesRepo.add(dummyDocument);
 
+    if (resultDummy === null) {
+      response.unprocessableEntity();
+      return res.status(response.status).json(response);
+    }
+
+    // TODO:
     // map dummy document model into a dto model
     // const mappedDummy = mapper.map<DummyDTO>(resultDummy);
 
-    // At this point all went fine, so lets construct a successful response
+    // Construct a successful response
     response.errors = validationResult.getFailureMessages();
     //response.result = mappedDummy;
+    response.result = resultDummy; // Temporal
     response.ok();
     return res.status(response.status).json(response);
   }
