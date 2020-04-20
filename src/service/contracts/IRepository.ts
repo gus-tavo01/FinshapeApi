@@ -1,9 +1,11 @@
+import { MongooseFilterQuery } from 'mongoose';
+
 export interface IRepository<T> {
   add(entity: T): Promise<T | null>;
   // addRange
-  // find
+  find(conditions: () => MongooseFilterQuery<T>): Promise<T | null>;
   // findRange
-  // remove
+  remove(id: string): Promise<boolean>;
   // removeRange
-  // update
+  update(id: string, newEntity: T): Promise<boolean>;
 }
