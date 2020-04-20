@@ -11,7 +11,7 @@ import { Dummy } from '../models/Dummy';
 import { DummiesRepository } from '../service/DummiesRepository';
 import { DummyValidator } from '../validators/dummyValidator';
 
-@Controller('/subjects')
+@Controller('/dummies')
 export class DummiesController {
   public constructor(private dummiesRepo: DummiesRepository) {}
 
@@ -85,9 +85,7 @@ export class DummiesController {
   }
 
   @Put('/:id')
-  public async updateDummy(req: HttpRequest<void>, res: Response) {
-    // return subject after update
-  }
+  public async updateDummy(req: HttpRequest<void>, res: Response) {}
 
   @Delete('/:id')
   public async deleteDummy(req: HttpRequest<void>, res: Response) {}
